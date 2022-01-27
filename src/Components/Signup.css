@@ -1,10 +1,10 @@
-.login-cont{
+.signup-cont{
     margin-top: 3rem;
     display: flex;
     justify-content: center;
 }
 
-.login-card{
+.signup-card{
     width: 30vw;
     display: flex;
     flex-direction: column;
@@ -12,12 +12,12 @@
     margin-top: 1rem;
 }
 
-.login-logo{
+.signup-logo{
     display: flex;
     justify-content: center;
     height: 25vh;
 }
 
-.login-logo > img{
+.signup-logo > img{
     width: 12vw;
 }
