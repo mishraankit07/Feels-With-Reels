@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useContext } from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -19,6 +20,7 @@ import TextField from '@mui/material/TextField';
 import { Link } from 'react-router-dom';
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext, Image } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
+import { AuthContext } from '../Context/AuthContext';
 
 const bull = (
     <Box
@@ -30,7 +32,10 @@ const bull = (
 );
 
 export default function Login() {
-
+    
+    const store=useContext(AuthContext);
+    console.log(store);
+    
     const userStyles = makeStyles({
         text1: {
             color: 'grey',
@@ -70,11 +75,11 @@ export default function Login() {
                         touchEnabled={false}
                     >
                         <Slider>
-                            <Slide index={0}><Image src={login_img1}/></Slide>
-                            <Slide index={1}><Image src={login_img2}/></Slide>
-                            <Slide index={2}><Image src={login_img3}/></Slide>
-                            <Slide index={3}><Image src={login_img4}/></Slide>
-                            <Slide index={4}><Image src={login_img5}/></Slide>
+                            <Slide index={0}><Image src={login_img1} /></Slide>
+                            <Slide index={1}><Image src={login_img2} /></Slide>
+                            <Slide index={2}><Image src={login_img3} /></Slide>
+                            <Slide index={3}><Image src={login_img4} /></Slide>
+                            <Slide index={4}><Image src={login_img5} /></Slide>
                         </Slider>
                     </CarouselProvider>
                 </div>
