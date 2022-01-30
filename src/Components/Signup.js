@@ -50,7 +50,7 @@ export default function SignUp() {
     // for storing profile pick
     const [file, setFile] = useState(null);
     const [error, setError] = useState('');
-    const [loading, setLoading] = useState('');
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const { signup } = useContext(AuthContext);
 
