@@ -1,5 +1,4 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
 import firebase from 'firebase/compat/app';
 // TODO: Add SDKs for Firebase products that you want to use
 
@@ -26,7 +25,7 @@ export const auth = firebase.auth();
 const firestore = firebase.firestore();
 export const database = {
     users: firestore.collection('users'),
-    getTimeStamp: firebase.firestore.FieldValue.serverTimeStamp
+    posts: firestore.collection('posts')
 }
 
 export const storage=firebase.storage();

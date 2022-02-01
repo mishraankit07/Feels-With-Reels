@@ -77,11 +77,13 @@ export default function SignUp() {
             const uploadTask = storage.ref(`/users/${userId}/ProfileImage`).put(file);
             uploadTask.on('state_changed', fn1, fn2, fn3);
 
+            // handles progress
             function fn1(snapshot) {
                 let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                 console.log(`Upload is ${progress} % done`);
             }
 
+            // handles error
             function fn2(error) {
                 console.log('error while profile pic uploading:', error);
                 setError(error);
@@ -102,6 +104,7 @@ export default function SignUp() {
                         userId: userId,
                         fullName: name,
                         profileImgUrl: url,
+                        postIds:[],
                         createdAt: dateTime
                     })
                 })
