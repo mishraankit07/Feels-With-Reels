@@ -5,10 +5,9 @@ import LinearProgress from '@mui/material/LinearProgress';
 import { database, storage } from '../firebase';
 import { v4 as uuidv4 } from 'uuid';
 
-
 function UploadFile(props) {
 
-    console.log("Props:", props);
+    // console.log("Props:", props);
 
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
