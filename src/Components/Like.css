@@ -1,0 +1,17 @@
+.icon-style{
+    position: absolute;
+    bottom: 4rem;
+    left: 3rem;
+}
+
+.like{
+    color: red;
+}
+
+.dislike{
+    color: white;
+}
+
+.icon-style:hover{
+    cursor: pointer;
+}

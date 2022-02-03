@@ -1,4 +1,4 @@
-import React, { useState,useContext,useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../Context/AuthContext';
 import { database } from '../firebase';
 import UploadFile from './UploadFile';
@@ -8,15 +8,16 @@ function Feed() {
 
     // the user here we got is from auth, so only contains userId
     const { user, logout } = useContext(AuthContext);
-    const [userData,setUserData]=useState('');
+    const [userData, setUserData] = useState('');
 
-    useEffect(()=>{
-        const unsub=database.users.doc(user.uid).onSnapshot((snapshot)=>{
+    
+    useEffect(() => {
+        const unsub = database.users.doc(user.uid).onSnapshot((snapshot) => {
             setUserData(snapshot.data());
         })
 
-        return ()=>{unsub()}
-    },[userData])
+        return () => { unsub() }
+    }, [userData])
     // if a new user logs in then we need to get new user data as well
 
     let handleLogout = async () => {
@@ -29,15 +30,24 @@ function Feed() {
         }
     }
 
+    //console.log("User data:", userData);
+
     return (
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
-            <div className="comp" style={{ width: "50%" }}>
-                <h1> Hi,Welcome to feed </h1>
-                <button onClick={handleLogout}> Logout </button>
-                <UploadFile user={userData}/>
-                <Posts userData={userData}/>
+        <div>
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
+
+                <div className="comp">
+                    <h1> Hi {userData.fullName}! Welcome to feed </h1>
+                    <button onClick={handleLogout}> Logout </button>
+                </div>
             </div>
-        </div>
+
+
+            <div>
+                <UploadFile user={userData} />
+                <Posts userData={userData} />
+            </div>
+        </div >
     )
 }
 

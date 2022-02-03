@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './Video.css';
 
 function Video(props) {
 
@@ -9,6 +10,8 @@ function Video(props) {
   }
 
   let handleVideoEnd=(e)=>{
+    console.log("current element:",ReactDOM.findDOMNode(e.target));
+
     let next=ReactDOM.findDOMNode(e.target).parentNode.nextSibling;
     if(next){
       next.scrollIntoView();

@@ -53,6 +53,19 @@ export default function SignUp() {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const { signup } = useContext(AuthContext);
+    const {user} = useContext(AuthContext);
+
+
+    console.log("current user:",user);
+    // if user is already logged in then take to feed
+    useEffect(()=>{
+        console.log("Component did mount called!");
+        
+        if(user){
+            console.log("going to /");
+            navigate('/');
+        }
+    },[])
 
     let handleSignup = async () => {
         if (file == null) {

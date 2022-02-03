@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -67,6 +67,16 @@ export default function Login() {
     const navigate = useNavigate();
     const { login } = useContext(AuthContext);
     const {user} = useContext(AuthContext);
+
+    // console.log("current user:",user);
+    // if user is already logged in then take to feed
+    useEffect(()=>{
+        console.log("component did mount called");
+        if(user){
+            console.log("going to /");
+            navigate('/');
+        }
+    },[])
 
     let handleLogin = async () => {
 
