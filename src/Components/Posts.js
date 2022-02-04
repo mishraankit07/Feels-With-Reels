@@ -5,6 +5,7 @@ import Video from './Video';
 import './Posts.css';
 import Avatar from '@mui/material/Avatar';
 import Like from './Like.js';
+import Comment from './Comment';
 
 function Posts({ userData }) {
 
@@ -49,6 +50,7 @@ function Posts({ userData }) {
                                         </div>
                                         <Video className="video-elem" src={post.postUrl} />
                                         <Like userData={userData} postData={post}/>
+                                        <Comment userData={userData} postData={post}/>
                                     </div>
                                 </React.Fragment>
                             ))

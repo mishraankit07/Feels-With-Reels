@@ -1,0 +1,21 @@
+.user-comments{
+    height: 70vh;
+    width: 100%;
+}
+
+.comments-cont{
+    overflow: auto;
+}
+
+.add-comment-cont{
+    height: 20%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-comment{
+    width: 50%;
+}

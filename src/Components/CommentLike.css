@@ -1,0 +1,11 @@
+.comment-like{
+    width: 20px;
+    height: 20px;
+    color: red;
+}
+
+.comment-dislike{
+    width: 20px;
+    height: 20px;
+    color: black;
+}
