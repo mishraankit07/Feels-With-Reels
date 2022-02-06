@@ -6,15 +6,10 @@ import Typography from '@mui/material/Typography';
 import './GetComments.css';
 
 function GetComments({ postData }) {
-
+    
     const [comments, setComments] = useState(null);
 
     useEffect(async() => {
-
-        async function getData(commentDocId){
-            let res=await database.comments.doc(commentDocId).get();
-        }
-
         let commentsData = [];
 
         for (let i = 0; i < postData.comments.length; i++) {

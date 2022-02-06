@@ -54,7 +54,7 @@ function Comment({ userData, postData }) {
                         <GetComments postData={postData}/>
                     </Card>
 
-                    <Card className="add-comment-cont">
+                    <Card className="post-add-comment-cont">
                     <Typography> {postData.likes.length == 0 ? '' : `Liked by ${postData.likes.length} users`}</Typography>
                         <div style={{display:"flex",alignItems: "center",justifyContent:"center", gap:"0.5rem",padding: "1rem"}}>
                             <CommentLike userData={userData} postData={postData} />
