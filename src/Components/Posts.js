@@ -4,12 +4,14 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Video from './Video';
 import './Posts.css';
 import Avatar from '@mui/material/Avatar';
-import Like from './Like.js';
+import Like from './Like';
 import Comment from './Comment';
 
 function Posts({ userData }) {
 
     const [posts, setPosts] = useState(null);
+
+    // console.log("posts component called");
 
     useEffect(() => {
 
@@ -27,30 +29,28 @@ function Posts({ userData }) {
 
             // console.log("Posts Arr:",postsArr);
             setPosts(postsArr);
-            // console.log("Posts Data:",posts);
+            console.log("Posts Data:",posts);
         })
-
-        return unsub;
     }, [])
 
     // console.log("user data:",userData);
     return (
-        <div>
+        <div style={{marginTop:"2rem"}}>
             {
                 // if posts haven't loaded yet, or user not logged in then show loading
-                (posts == null || userData == null) ? <CircularProgress color="secondary" /> :
+                (posts == null || userData == null) ? <CircularProgress color="secondary" style={{display: "flex", justifyContent: "center", alignItems: "center" }} /> :
                     <div className="videos-cont">
                         {
                             posts.map((post) => (
-                                <React.Fragment>
+                                <React.Fragment key={post.docId}>
                                     <div className="video-cont">
                                         <div className="user-profile">
                                             <Avatar alt={post.userName} src={post.userProfile} />
                                             <h4> {post.userName} </h4>
                                         </div>
                                         <Video className="video-elem" src={post.postUrl} />
-                                        <Like userData={userData} postData={post}/>
-                                        <Comment userData={userData} postData={post}/>
+                                        <Like userData={userData} postData={post} />
+                                        <Comment userData={userData} postData={post} />
                                     </div>
                                 </React.Fragment>
                             ))

@@ -8,11 +8,13 @@ function AddComment({ userData, postData }) {
 
     const [text, setText] = useState('');
 
-    // console.log("userData:", userData);
+    console.log("add comments called from post!");
+    //console.log("user data in comments:", userData);
+    //console.log("post data in comments:",postData);
 
     let handleCommentPost = async() => {
 
-        console.log("post called!");
+        //console.log("post called!");
 
         let postObj = {
             text: text,
@@ -34,7 +36,11 @@ function AddComment({ userData, postData }) {
 
     return (
         <div style={{ width: "100%" }}>
-            <TextField size="small" id="outlined-basic" label="Outlined" variant="outlined" value={text} onChange={(e) => setText(e.target.value)} />
+            <TextField size="small" id="outlined-basic" label="Outlined" variant="outlined" value={text} onChange={(e) => {
+                console.log("value of text in add comment:",e.target.value)
+                setText(e.target.value)
+                }
+            } />
             <Button variant="contained" onClick={handleCommentPost}> Post </Button>
         </div>
     )

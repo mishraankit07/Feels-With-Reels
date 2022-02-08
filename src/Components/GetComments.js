@@ -6,7 +6,8 @@ import Typography from '@mui/material/Typography';
 import './GetComments.css';
 
 function GetComments({ postData }) {
-    
+
+    console.log("get comments from profile:");
     const [comments, setComments] = useState(null);
 
     useEffect(async() => {
@@ -14,14 +15,14 @@ function GetComments({ postData }) {
 
         for (let i = 0; i < postData.comments.length; i++) {
             let commentDocId = postData.comments[i].id;
-            console.log('comment document id:', commentDocId);
+            // console.log('comment document id:', commentDocId);
             let commentData = await database.comments.doc(commentDocId).get();
-            console.log("comment data:", commentData.data());
+            // console.log("comment data:", commentData.data());
             commentsData.push(commentData.data());
         }
 
-        //console.log("comments in post data:",postData.comments);
-        console.log("comments data:", commentsData);
+        // console.log("comments in post data:",postData.comments);
+       // console.log("comments data:", commentsData);
         setComments(commentsData);
     }, [postData])
 
@@ -32,7 +33,7 @@ function GetComments({ postData }) {
                     comments.map((commentObj) => (
                         <div className="comment">
                             <div className="commenter-info">
-                                <Avatar alt={commentObj.userName} src={commentObj.userProfileImgUrl} />
+                                <Avatar style={{width:"1.5rem",height:"1.5rem"}} alt={commentObj.userName} src={commentObj.userProfileImgUrl} />
                                 <Typography> {commentObj.userName} </Typography>
                             </div>
                             <Typography> {commentObj.text} </Typography>

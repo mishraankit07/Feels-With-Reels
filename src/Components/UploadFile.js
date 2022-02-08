@@ -26,8 +26,8 @@ function UploadFile(props) {
         // assign a unique id to each post
         let pid = uuidv4();
         setLoading(true);
-        
-        // in storage.ref we provide the address where we want to put the file in storage            
+
+        // in storage.ref we store the file, and then store its address in firestore            
         const uploadTask = storage.ref(`/posts/${pid}/${file.name}`).put(file);
 
         uploadTask.on('state_changed', fn1, fn2, fn3);
@@ -81,18 +81,18 @@ function UploadFile(props) {
                 })
             })
             // console.log("post object:", postObj);
-            setLoading(false);
+            //setLoading(false);
         }
     }
 
     return (
-        <div style={{marginTop:"6rem", display:"flex",justifyContent:"center"}}>
+        <div style={{ marginTop: "6rem", display: "flex", justifyContent: "center" }}>
 
             {
                 error != "" ? <Alert severity="error">This is an error alert — check it out!</Alert> :
                     <>
-                        <input type="file" accept="video/**" id="upload-input" style={{ opacity: "0" }} onChange={(e) => handleVideoUpload(e.target.files[0])} />
                         <label htmlFor='upload-input'>
+                            <input type="file" accept="video/**" id="upload-input" style={{ opacity: "0", display: "none" }} onChange={(e) => handleVideoUpload(e.target.files[0])} />
                             <Button
                                 variant="outlined"
                                 color="secondary"

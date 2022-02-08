@@ -6,7 +6,7 @@ import './CommentLike.css';
 function CommentLike({userData,postData}) {
     
     // state showing if current user has liked the post or not
-    const [like, setLike] = useState(null);
+    const [commentLike, setCommentLike] = useState(null);
 
     useEffect(() => {
 
@@ -20,16 +20,16 @@ function CommentLike({userData,postData}) {
             userLike = false;
         }
 
-        setLike(userLike);
-    }, [postData, userData]);
+        setCommentLike(userLike);
+    }, [postData]);
 
     // run the useEffect whenever the postData changes i.e we get a new post
     // or data corresponding to current post changes
 
-    let handleLike = (e) => {
+    let handleCommentLike = (e) => {
         // if the current user had liked the post and clicked on the like btn again
         // so he wants to unlike the post
-        if (like == true) {
+        if (commentLike == true) {
             // for the current post, remove the id of current user
             let newPostData = postData.likes.filter((userId) => {
                 return userId != userData.userId;
@@ -39,7 +39,7 @@ function CommentLike({userData,postData}) {
                 likes: newPostData
             })
 
-            setLike(false);
+            setCommentLike(false);
         }
 
         else {
@@ -49,14 +49,14 @@ function CommentLike({userData,postData}) {
             database.posts.doc(postData.docId).update({
                 likes: newPostData
             })
-            setLike(true);
+            setCommentLike(true);
         }
     }
 
     return (
         <div>
             {
-                like != null ? like == true ? <FavoriteIcon className="comment-like" onClick={handleLike} /> : <FavoriteIcon className="comment-dislike" onClick={handleLike} /> :
+                commentLike != null ? (commentLike == true ? <FavoriteIcon className="comment-like" onClick={handleCommentLike} /> : <FavoriteIcon className="comment-dislike" onClick={handleCommentLike} />) :
                     <></>
             }
         </div>);

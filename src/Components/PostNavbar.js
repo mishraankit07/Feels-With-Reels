@@ -9,14 +9,14 @@ import Menu from '@mui/material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Context/AuthContext';
 import HomeIcon from '@mui/icons-material/Home';
 import ExploreIcon from '@mui/icons-material/Explore';
 import Avatar from '@mui/material/Avatar';
 
 
-export default function Navbar({ userData }) {
+export default function PostNavbar({ userData }) {
 
     // console.log("user data:", userData);
 
@@ -86,7 +86,6 @@ export default function Navbar({ userData }) {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleProfileRedirect} style={{ display: "flex", gap: "0.2rem" }}><AccountCircle /> Profile </MenuItem>
             <MenuItem onClick={handleLogout} style={{ display: "flex", gap: "0.2rem" }}><LogoutIcon /> Logout </MenuItem>
         </Menu>
     );
@@ -108,7 +107,6 @@ export default function Navbar({ userData }) {
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
         >
-            <MenuItem onClick={handleProfileRedirect} style={{ display: "flex", gap: "0.2rem" }}><AccountCircle /> Profile </MenuItem>
             <MenuItem onClick={handleLogout} style={{ display: "flex", gap: "0.2rem" }}><LogoutIcon /> Logout </MenuItem>
         </Menu>
     );
@@ -118,13 +116,8 @@ export default function Navbar({ userData }) {
             <AppBar position="fixed" style={{ background: "#fd79a8" }}>
                 <Toolbar>
                     <div style={{ cursor: "pointer" }}>
-                        <Typography style={{border:"2px solid black",padding:"0.5rem"}}> Feels With Reels </Typography>
-                        {
-                            // <img src={navLogo} onClick={handleBannerClick} style={{ width: '150px', height: '90px' }} />
-                        }
+                        <Typography style={{ border: "2px solid black", padding: "0.5rem" }}> Feels With Reels </Typography>
                     </div>
-
-                    <Typography style={{ marginLeft: "20vw", fontSize: "2rem", fontWeight: "bold" }}> Hi {userData.fullName} Welcome to feed! </Typography>
 
                     <Box sx={{ flexGrow: 1 }} />
                     <Box sx={{ display: { xs: 'none', md: 'flex', alignItems: 'center' } }}>
@@ -138,14 +131,7 @@ export default function Navbar({ userData }) {
                                 style={{ backgroundColor: 'transparent' }}
                                 color="inherit"
                             >
-                                {/* <div style={{ display: "flex", alignItems: "center", gap: "1.5rem", marginRight: "2rem" }}> */}
                                 <HomeIcon onClick={handleBannerClick} style={{ height: "2rem", width: "2rem" }} />
-                                {
-                                    // <ExploreIcon onClick={handleExploreClick} style={{height:"2rem",width:"2rem"}}/>
-                                    // <Avatar alt={userData.fullName} src={userData.profileImgUrl} style={{height:"2rem",width:"2rem"}}/>
-                                }
-                                { /*</div>*/}
-
                             </IconButton>
                             <IconButton
                                 size="large"

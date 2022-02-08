@@ -87,6 +87,7 @@ export default function SignUp() {
             let userObj = await signup(email, password);
             console.log("userObj:", userObj);
             let userId = userObj.user.uid;
+            // store the image in firebase storage
             const uploadTask = storage.ref(`/users/${userId}/ProfileImage`).put(file);
             uploadTask.on('state_changed', fn1, fn2, fn3);
 
@@ -112,6 +113,7 @@ export default function SignUp() {
                     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
                     var dateTime = date+' '+time;
 
+                    // then store its address and reference in the firestore
                     database.users.doc(userId).set({
                         email: email,
                         userId: userId,

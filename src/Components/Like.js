@@ -8,6 +8,8 @@ function Like({ userData, postData }) {
     // console.log("user:", userData);
     // console.log("post:", postData);
 
+    // console.log("like called")
+
     // state showing if current user has liked the post or not
     const [like, setLike] = useState(null);
 
@@ -24,7 +26,7 @@ function Like({ userData, postData }) {
         }
 
         setLike(userLike);
-    },[postData,userData]);
+    },[postData]);
 
     // run the useEffect whenever the postData changes i.e we get a new post
     // or data corresponding to current post changes
@@ -59,7 +61,7 @@ function Like({ userData, postData }) {
     return (
         <div>
             {
-                like != null ? like==true ? <FavoriteIcon className="icon-style like" onClick={handleLike} /> : <FavoriteIcon className="icon-style dislike" onClick={handleLike}/> :
+                like != null ? (like==true ? <FavoriteIcon className="icon-style like" onClick={handleLike} /> : <FavoriteIcon className="icon-style dislike" onClick={handleLike}/>) :
                 <></>
             }
         </div>);

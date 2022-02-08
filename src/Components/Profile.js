@@ -2,21 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
 import { database } from '../firebase';
-import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
-import Navbar from './Navbar';
+import PostNavbar from './PostNavbar';
 import './Profile.css';
-import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import CommentLike from './CommentLike';
 import AddComment from './AddComment';
 import GetComments from './GetComments';
@@ -34,7 +24,7 @@ function Profile() {
         setOpen(null);
     };
 
-    console.log("profile component is called");
+    // console.log("profile component is called");
 
     // user id (doc id) of the user whose profile is clicked
     const params = useParams();
@@ -56,20 +46,21 @@ function Profile() {
             for (let i = 0; i < userData.postIds.length; i++) {
                 let postId = userData.postIds[i];
                 let data = await database.posts.doc(postId).get();
-                updatedPostsArr.push(data.data());
+                console.log("post data from profile:", data);
+                updatedPostsArr.push({ ...data.data(), docId: data.id });
             }
-        }
 
-       // console.log("posts data:", updatedPostsArr);
-        setPostData(updatedPostsArr);
-    }, [postData])
+            // console.log("posts data:", updatedPostsArr);
+            setPostData(updatedPostsArr);
+        }
+    })
 
     return (
         <div>
             {
-                (userData == null || postData == null) ? <CircularProgress color="inherit" /> :
+                (userData == null || postData == null) ? <CircularProgress style={{display:"flex", justifyContent:"center", alignItems:"center"}} color="inherit" /> :
                     <div class="profile-cont">
-                        <Navbar userData={userData} />
+                        <PostNavbar userData={userData} />
                         <div className='user-data-cont'>
                             <div className="user-data">
                                 <img alt={userData.fullName} className="user-img" src={userData.profileImgUrl} />
@@ -93,7 +84,7 @@ function Profile() {
                         <div class="profile-posts-cont">
                             {
                                 postData.map((post) => (
-                                    <React.Fragment>
+                                    <React.Fragment key={post.docId}>
                                         <div class="profile-video-cont">
                                             <video muted="muted" className="profile-video-elem" src={post.postUrl} onClick={() => { handleClickOpen(post.postId) }} />
                                         </div>
@@ -118,10 +109,12 @@ function Profile() {
                                                     </Card>
 
                                                     <Card className="post-add-comment-cont">
-                                                        <Typography> {post.likes.length == 0 ? '' : `Liked by ${post.likes.length} users`}</Typography>
-                                                        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem", padding: "1rem" }}>
-                                                            <CommentLike userData={userData} postData={post} />
-                                                            <AddComment userData={userData} postData={post} />
+                                                        <div>
+                                                            <Typography style={{textAlign:"center"}}> {post.likes.length == 0 ? '' : `Liked by ${post.likes.length} users`}</Typography>
+                                                            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem", padding: "1rem" }}>
+                                                                <CommentLike userData={userData} postData={post} />
+                                                                <AddComment userData={userData} postData={post} />
+                                                            </div>
                                                         </div>
                                                     </Card>
                                                 </div>
@@ -133,7 +126,8 @@ function Profile() {
                         </div>
                     </div>
             }
-        </div>);
+        </div>
+    );
 }
 
 export default Profile;
