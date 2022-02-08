@@ -21,7 +21,7 @@ function Video(props) {
 
 
   return (
-  <video src={props.src} muted="muted" controls className="video-style" onEnded={handleVideoEnd} onClick={handleVideoClick}></video>
+  <video src={props.src} muted="muted" className="video-style" onEnded={handleVideoEnd} onClick={handleVideoClick}></video>
   );
 }
 

@@ -31,7 +31,43 @@ function Posts({ userData }) {
             setPosts(postsArr);
             console.log("Posts Data:",posts);
         })
+
+        return unsub;
     }, [])
+
+    const callback=(videos)=>{
+        videos.forEach((video)=>{
+            let videoElem=video.target.childNodes[1];
+            // play all the video element for now
+
+            // 2 options were available
+            // 1) pause all, and play only the one in view
+            // 2) play all, and pause all the ones not in view
+            
+            // why take 2nd route ? video.play() is an async function
+            // so we wouldn't know when current video will play if we take the first route 
+
+            videoElem.play().then(()=>{
+                // if current video is not in view then pause it
+                if(videoElem.paused==false && video.isIntersecting==false){
+                    videoElem.pause();
+                }
+            })
+        })
+    }
+
+
+    let observer=new IntersectionObserver(callback,{threshold:0.6});
+
+    useEffect(()=>{
+        let videosCont=document.querySelectorAll('.video-cont');
+
+        videosCont.forEach((element)=>{
+            console.log("video parent:",element);
+           observer.observe(element);
+        })
+    },[posts])
+
 
     // console.log("user data:",userData);
     return (
