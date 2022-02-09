@@ -158,7 +158,7 @@ export default function SignUp() {
                         }
 
                         <TextField size="small" id="outlined-basic" margin="dense" label="Email" variant="outlined" fullWidth value={email} onChange={(e) => setEmail(e.target.value)} />
-                        <TextField size="small" id="outlined-basic" margin="dense" label="Password" variant="outlined" fullWidth value={password} onChange={(e) => setPassword(e.target.value)} />
+                        <TextField size="small" id="outlined-basic" margin="dense" label="Password of atleast 6 charecters" variant="outlined" fullWidth value={password} onChange={(e) => setPassword(e.target.value)} />
                         <TextField size="small" id="outlined-basic" margin="dense" label="Full Name" variant="outlined" fullWidth value={name} onChange={(e) => setName(e.target.value)} />
 
                         <div style={{ marginTop: "1rem" }}>

@@ -66,33 +66,48 @@ export default function Login() {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const { login } = useContext(AuthContext);
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
     // console.log("current user:",user);
     // if user is already logged in then take to feed
-    useEffect(()=>{
+    useEffect(() => {
         console.log("component did mount called");
-        if(user){
+        if (user) {
             console.log("going to /");
             navigate('/');
         }
-    },[])
+    }, [])
 
     let handleLogin = async () => {
 
         try {
             setError('');
             setLoading(true);
-            await login(email, password);
+            login(email, password).then(() => {
+                setLoading(false);
+                navigate('/');
+            }).catch((error) => {
+                let errorCode = error.code;
+                let errorMessage = error.message;
+
+                setError(errorMessage);
+                setLoading(false);
+
+                setTimeout(() => {
+                    setError('');
+                }, 5000)
+                console.log("error code:", errorCode, "error msg:", errorMessage);
+            })
 
             // sign in is complete so no loading rn
-            setLoading(false);
+            // setLoading(false);
             // means signup is done so take him to the feed
-            navigate('/');
+            // navigate('/');
         }
 
-        catch(err) {
+        catch (err) {
             setError(err);
+            setLoading(false);
 
             setTimeout(() => {
                 setError('');
