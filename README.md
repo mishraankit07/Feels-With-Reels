@@ -1,6 +1,7 @@
 # About
 Feels With Reels is a project in which user can upload his reels, see other people's posts and comment on them.
 
+
 # Features
 1.  User can create account on /signup and login on /login
 2.  User can't go to / (feed) without login.
@@ -18,3 +19,14 @@ Feels With Reels is a project in which user can upload his reels, see other peop
 6. Firebase login with email and password
 7. Intersection Observer Api
 8. Context Api
+
+# Testing
+Directly signin via the sample email,password: (test@test.com  123456)
+
+
+# Demo
+https://user-images.githubusercontent.com/47622667/153407356-665c7d84-1e3c-413d-8570-0271e408c3bf.mp4
+
+# Further Things To Work On:
+1. bookmarking/favouriting a post.
+2. showing the bookmarked posts in user profile
