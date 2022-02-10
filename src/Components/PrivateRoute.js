@@ -8,7 +8,13 @@ function PrivateRoute({children}) {
     console.log("children:",children);
     const { user } = useContext(AuthContext);
     // if user is not NULL then return the functional component passed as children which is Feed
-    // else if the user is not loged in we navigate to the login page 
+    // else if the user is not loged in we navigate to the login page
+    
+
+    if(!user){
+        return <Navigate to="/login" />;
+    }
+    
     return user ? children : <Navigate to="/login" />;
 }
 

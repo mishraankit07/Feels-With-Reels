@@ -7,7 +7,7 @@ import './GetComments.css';
 
 function GetComments({ postData }) {
 
-    console.log("get comments from profile:");
+    //console.log("get comments from profile:");
     const [comments, setComments] = useState(null);
 
     useEffect(async() => {
@@ -17,14 +17,14 @@ function GetComments({ postData }) {
             let commentDocId = postData.comments[i].id;
             // console.log('comment document id:', commentDocId);
             let commentData = await database.comments.doc(commentDocId).get();
-            // console.log("comment data:", commentData.data());
+            console.log("comment data:", commentData.data());
             commentsData.push(commentData.data());
         }
 
         // console.log("comments in post data:",postData.comments);
        // console.log("comments data:", commentsData);
         setComments(commentsData);
-    }, [postData])
+    },[postData])
 
     return (
         <div class="comments-cont">

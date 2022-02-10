@@ -83,7 +83,7 @@ export default function SignUp() {
             setError('');
             // work hasn't been complete yet
             setLoading(true);
-
+            
             let userObj = await signup(email, password);
             console.log("userObj:", userObj);
             let userId = userObj.user.uid;
@@ -128,8 +128,6 @@ export default function SignUp() {
                 // means signup is done so take him to the feed
                 navigate('/');
             }
-
-            console.log(userObj);
         }
 
         catch (err) {

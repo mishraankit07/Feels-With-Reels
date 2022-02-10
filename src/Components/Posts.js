@@ -33,7 +33,7 @@ function Posts({ userData }) {
         })
 
         return unsub;
-    }, [])
+    },[])
 
     const callback=(videos)=>{
         videos.forEach((video)=>{
